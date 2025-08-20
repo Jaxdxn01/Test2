@@ -3,136 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Consultation Information</title>
+<title>Appointment Form</title>
 <style>
     body {
-        font-family: "Georgia", serif;
-        background-color: #f4f0ea;
+        font-family: Arial, sans-serif;
+        background: #f4f0ea;
         margin: 0;
-        padding: 40px;
+        padding: 20px;
         color: #333;
-        display: flex;
-        justify-content: center;
     }
-
     .container {
         max-width: 600px;
-        width: 100%;
+        margin: auto;
         background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        padding: 30px;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-
     h2 {
-        font-size: 1.8rem;
         margin-bottom: 20px;
-        color: #2c2c2c;
+        font-size: 1.6rem;
+        text-align: center;
     }
-
-    .appointment-summary {
-        padding: 15px;
-        background: #f1e7dc;
-        border: 1px solid #c1a57b;
-        border-radius: 8px;
-        margin-bottom: 25px;
-        font-size: 1rem;
-    }
-
     label {
-        display: block;
-        margin-top: 15px;
+        font-size: 0.9rem;
         font-weight: bold;
-        color: #444;
+        display: block;
+        margin: 10px 0 5px;
     }
-
     input, textarea {
         width: 100%;
-        padding: 12px;
-        margin-top: 6px;
+        padding: 10px;
+        border-radius: 6px;
         border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 1rem;
-        box-sizing: border-box;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
     }
-
-    textarea {
-        resize: vertical;
-        min-height: 80px;
-    }
-
-    .submit-btn {
-        margin-top: 25px;
-        padding: 14px 24px;
-        background: #7a5c3f;
-        color: white;
-        font-size: 1rem;
+    button {
+        background: #b18c57;
+        color: #fff;
         border: none;
+        padding: 12px 20px;
         border-radius: 8px;
+        font-size: 1rem;
         cursor: pointer;
-        transition: background 0.2s ease;
+        transition: background 0.3s;
         width: 100%;
     }
-
-    .submit-btn:hover {
-        background: #5f4630;
+    button:hover {
+        background: #8c6c3e;
+    }
+    .summary {
+        background: #faf7f1;
+        border: 1px solid #e2dcd2;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
     }
 </style>
 </head>
 <body>
 <div class="container">
-    <h2>Consultation Details</h2>
-    
-    <!-- Appointment Summary -->
-    <div class="appointment-summary" id="appointmentSummary">
-        Appointment scheduled with <strong>Olivia Wilson</strong> at <span id="selectedTime"></span>
-    </div>
-
-    <!-- Information Form -->
-    <form id="clientForm">
+    <h2>Complete Your Appointment</h2>
+    <div class="summary" id="summary"></div>
+    <form onsubmit="submitForm(event)">
         <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="John Doe" required>
-
+        <input type="text" id="name" required>
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="john@example.com" required>
-
+        <input type="email" id="email" required>
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" required>
-
-        <label for="notes">Additional Notes (optional)</label>
-        <textarea id="notes" name="notes" placeholder="Briefly describe your case..."></textarea>
-
-        <button type="submit" class="submit-btn">Confirm Consultation</button>
+        <input type="tel" id="phone" required>
+        <label for="details">Case Details</label>
+        <textarea id="details" rows="4" required></textarea>
+        <button type="submit">Submit Appointment</button>
     </form>
 </div>
-
 <script>
-    // Get selected time from query string
-    const params = new URLSearchParams(window.location.search);
-    const time = params.get("time");
+const params = new URLSearchParams(window.location.search);
+document.getElementById("summary").innerText =
+    `Booking with ${params.get("lawyer")} on ${params.get("date")} at ${params.get("time")}.`;
 
-    if (time) {
-        document.getElementById("selectedTime").textContent = time;
-    }
-
-    // Handle form submit
-    document.getElementById("clientForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-
-        // Capture form data (for sending to backend later)
-        const formData = {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            phone: document.getElementById("phone").value,
-            notes: document.getElementById("notes").value,
-            time: time
-        };
-
-        console.log("Form submitted:", formData);
-
-        // Redirect to a thank you page (or backend)
-        window.location.href = "thankyou.html";
-    });
+function submitForm(event) {
+    event.preventDefault();
+    alert("Your appointment has been submitted successfully!");
+    window.location.href = "index.html";
+}
 </script>
 </body>
 </html>

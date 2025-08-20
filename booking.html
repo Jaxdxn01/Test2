@@ -3,174 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book a Consultation</title>
+<title>Book Consultation</title>
 <style>
     body {
-        font-family: "Georgia", serif;
-        background-color: #f4f0ea;
+        font-family: Arial, sans-serif;
+        background: #f7f6f3;
         margin: 0;
-        padding: 40px;
+        padding: 20px;
         color: #333;
-        display: flex;
-        justify-content: center;
     }
-
     .container {
-        max-width: 800px;
-        width: 100%;
+        max-width: 900px;
+        margin: auto;
         background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        padding: 30px;
-    }
-
-    .lawyer-header {
-        display: flex;
-        align-items: center;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        display: grid;
+        grid-template-columns: 1fr 2fr;
         gap: 20px;
-        margin-bottom: 25px;
     }
-
-    .lawyer-header img {
-        width: 120px;
-        height: 120px;
-        border-radius: 8px;
+    .lawyer-info {
+        text-align: center;
+    }
+    .lawyer-info img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
         object-fit: cover;
+        margin-bottom: 10px;
     }
-
     .lawyer-info h2 {
         margin: 0;
-        font-size: 1.8rem;
-        color: #2c2c2c;
+        font-size: 1.5rem;
     }
-
-    .lawyer-info p {
-        margin: 8px 0 0;
+    .bio {
+        font-size: 0.9rem;
         color: #666;
-        font-size: 0.95rem;
+        margin-top: 8px;
     }
-
-    .times-container {
-        margin-top: 25px;
-    }
-
-    .times-title {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        color: #444;
-    }
-
-    .times-scroll {
-        max-height: 220px; /* shows about 5 at once */
+    .time-slots {
+        display: flex;
+        flex-direction: column;
+        max-height: 350px;
         overflow-y: auto;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 10px;
-        background: #fafafa;
+        padding-right: 10px;
+        border-right: 1px solid #eee;
     }
-
-    .time-slot {
-        padding: 12px 15px;
-        margin-bottom: 8px;
-        background: #fff;
+    .time-slots button {
+        padding: 12px;
+        margin: 5px 0;
         border: 1px solid #ccc;
         border-radius: 6px;
+        background: #fafafa;
         cursor: pointer;
-        transition: background 0.2s ease, transform 0.1s ease;
+        font-size: 0.95rem;
+        transition: background 0.2s;
     }
-
-    .time-slot:hover {
-        background: #f1e7dc;
-        transform: translateY(-2px);
+    .time-slots button:hover {
+        background: #e8e6df;
     }
-
-    .time-slot.selected {
-        background: #c1a57b;
-        color: white;
-        border-color: #a18661;
-        font-weight: bold;
-    }
-
-    .confirm-btn {
+    .confirm {
         margin-top: 20px;
-        padding: 14px 24px;
-        background: #7a5c3f;
-        color: white;
-        font-size: 1rem;
+        text-align: center;
+    }
+    .confirm button {
+        background: #b18c57;
+        color: #fff;
         border: none;
+        padding: 12px 20px;
         border-radius: 8px;
+        font-size: 1rem;
         cursor: pointer;
-        transition: background 0.2s ease;
-        width: 100%;
+        transition: background 0.3s;
     }
-
-    .confirm-btn:hover {
-        background: #5f4630;
+    .confirm button:hover {
+        background: #8c6c3e;
     }
-
-    .confirm-btn:disabled {
-        background: #bbb;
-        cursor: not-allowed;
+    @media (max-width: 768px) {
+        .container {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .time-slots {
+            max-height: 200px;
+            border-right: none;
+        }
     }
 </style>
 </head>
 <body>
 <div class="container">
-    <!-- Lawyer Info -->
-    <div class="lawyer-header">
-        <img src="olivia1.jpg" alt="Olivia Wilson">
-        <div class="lawyer-info">
-            <h2>Olivia Wilson</h2>
-            <p>Senior Attorney specializing in family law with over 15 years of courtroom experience. Olivia has successfully represented hundreds of clients in complex family and custody cases.</p>
-        </div>
+    <div class="lawyer-info">
+        <img id="lawyer-img" src="img/1.jpeg" alt="Lawyer Photo">
+        <h2 id="lawyer-name">Lawyer Name</h2>
+        <p class="bio">This is a short bio about the lawyer, highlighting expertise and achievements.</p>
     </div>
-
-    <!-- Time Slots -->
-    <div class="times-container">
-        <div class="times-title">Available Times for August 12, 2025</div>
-        <div class="times-scroll">
-            <div class="time-slot">09:00 AM</div>
-            <div class="time-slot">09:30 AM</div>
-            <div class="time-slot">10:00 AM</div>
-            <div class="time-slot">10:30 AM</div>
-            <div class="time-slot">11:00 AM</div>
-            <div class="time-slot">11:30 AM</div>
-            <div class="time-slot">12:00 PM</div>
-            <div class="time-slot">12:30 PM</div>
-            <div class="time-slot">01:00 PM</div>
-            <div class="time-slot">01:30 PM</div>
-            <div class="time-slot">02:00 PM</div>
-            <div class="time-slot">02:30 PM</div>
-            <div class="time-slot">03:00 PM</div>
-            <div class="time-slot">03:30 PM</div>
-            <div class="time-slot">04:00 PM</div>
-            <div class="time-slot">04:30 PM</div>
-            <div class="time-slot">05:00 PM</div>
+    <div>
+        <h3>Select a Time</h3>
+        <div class="time-slots" id="time-slots">
+            <!-- Times will load here -->
         </div>
-        <button class="confirm-btn" id="confirmBtn" disabled>Confirm Appointment</button>
+        <div class="confirm">
+            <button onclick="confirmBooking()">Confirm Appointment</button>
+        </div>
     </div>
 </div>
-
 <script>
-    let selectedTime = null;
-    const timeSlots = document.querySelectorAll('.time-slot');
-    const confirmBtn = document.getElementById('confirmBtn');
+const urlParams = new URLSearchParams(window.location.search);
+const lawyer = urlParams.get('lawyer') || "Lawyer";
+const date = urlParams.get('date') || "Selected Date";
+document.getElementById("lawyer-name").innerText = lawyer;
 
-    timeSlots.forEach(slot => {
-        slot.addEventListener('click', () => {
-            timeSlots.forEach(s => s.classList.remove('selected'));
-            slot.classList.add('selected');
-            selectedTime = slot.textContent;
-            confirmBtn.disabled = false;
-        });
-    });
-
-    confirmBtn.addEventListener('click', () => {
-        if (selectedTime) {
-            // Redirect to next page with selected time
-            window.location.href = "form.html?time=" + encodeURIComponent(selectedTime);
-        }
-    });
+const times = ["9:00 AM","10:00 AM","11:00 AM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM"];
+const slotsContainer = document.getElementById("time-slots");
+let selectedTime = null;
+times.forEach(time => {
+    const btn = document.createElement("button");
+    btn.innerText = time;
+    btn.onclick = () => {
+        selectedTime = time;
+        document.querySelectorAll(".time-slots button").forEach(b => b.style.background="");
+        btn.style.background = "#d4c1a6";
+    };
+    slotsContainer.appendChild(btn);
+});
+function confirmBooking() {
+    if (!selectedTime) {
+        alert("Please select a time.");
+        return;
+    }
+    window.location.href = `form.html?lawyer=${encodeURIComponent(lawyer)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(selectedTime)}`;
+}
 </script>
 </body>
 </html>
